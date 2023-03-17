@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boolzapp</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  
+  <div id="app">
+
+    <div id="chat-container">
+
+      <div id="users-list">
+
+        <div class="top-bar">
+          <div class="personal-profile">
+            Gabriel
+          </div>
+        </div>
+        <div class="notification-alert"></div>
+        <div id="search-bar"></div>
+
+        <ul id="users-chat-list">
+
+          <li v-for="(contact, index) in contacts" class="user-chat-element" :class=" index == activeContactIndex ? 'active' : ''" @click="changeActiveContactIndex(index)" >
+
+            <div class="user-pic">
+              <img v-bind:src="contact.avatar" alt="user pic">
+            </div>
+            <div class="user-chat-details">
+              <div class="user-name">{{ contact.name }}</div>
+              <div class="user-last-message">Ultimo messaggio</div>
+            </div>
+
+          </li>
+          
+        </ul>
+
+      </div>
+
+
+      <!-- _____________________________________________ -->
+
+      <div id="single-chat">
+        <div class="top-bar">
+          <div class="user-pic">
+            <img :src="contacts[activeContactIndex].avatar" alt="user pic">
+          </div>
+          <div class="user-chat-details">
+            <div class="user-name">{{ contacts[activeContactIndex].name }}</div>
+            <div class="user-last-access">10:50</div>
+          </div>
+        </div>
+
+        <div id="messages-list">
+          <!-- elemento -> un array -> oggetto -> array  -->
+          <!-- un singolo elemento dell'array messages dell'oggetto singolo di contacts -->
+
+          <div v-for="singleMessage in contacts[activeContactIndex].messages" class="message" :class="singleMessage.status">
+
+            {{singleMessage.message}}
+            <div class="message-time">
+              {{ singleMessage.date }}
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+    
+    <div id="background-top"></div>
+
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
