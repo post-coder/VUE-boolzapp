@@ -59,6 +59,18 @@ body {
   background-color: #eaeaea;
 }
 
+
+/* ricerca utenti */
+
+#chat-container #users-list #contacts-search input{
+  width: 100%;
+  padding: .8em;
+}
+
+/* / ricerca utenti */
+
+
+
 #chat-container #users-list .user-chat-element {
   display: flex;
   flex-flow: row;
@@ -92,10 +104,12 @@ body {
 /* single chat */
 
 #chat-container #single-chat {
-  background-color: #e5ddd5;
-  /* test */
-
+  display: flex;  
+  flex-flow: column;
+  
   width: calc(100% - 200px);
+
+  background-color: #e5ddd5;
 }
 
 #chat-container #single-chat .top-bar {
@@ -119,8 +133,11 @@ body {
   flex-flow: column;
   gap: 10px;
   align-items: flex-start;
+  flex-grow: 1;
 
   padding: 20px;
+
+  overflow-y: auto;
 
 }
 
@@ -153,4 +170,10 @@ body {
   font-size: .6em;
 
   color: #aaa
+}
+
+
+#chat-container #single-chat #user-input input {
+  width: 100%;
+  padding: 1em;
 }

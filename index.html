@@ -26,9 +26,12 @@
         <div class="notification-alert"></div>
         <div id="search-bar"></div>
 
+        <div id="contacts-search">
+          <input v-model="userSearch" @keyup="contactsSearch()" type="text" placeholder="Cerca o inizia una nuova chat">
+        </div>
         <ul id="users-chat-list">
 
-          <li v-for="(contact, index) in contacts" class="user-chat-element" :class=" index == activeContactIndex ? 'active' : ''" @click="changeActiveContactIndex(index)" >
+          <li v-for="(contact, index) in contacts" v-show="contact.visible" class="user-chat-element" :class=" index == activeContactIndex ? 'active' : ''" @click="changeActiveContactIndex(index)" >
 
             <div class="user-pic">
               <img v-bind:src="contact.avatar" alt="user pic">
@@ -72,6 +75,9 @@
           </div>
 
 
+        </div>
+        <div id="user-input">
+          <input v-model="userMessageInput" @keyup.enter="sendMessage()" type="text">
         </div>
       </div>
 
