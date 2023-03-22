@@ -5,12 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Boolzapp</title>
+  <!-- fix favicon -->
+  <link rel="shortcut icon" href="#">
+
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
+  <!-- luxon -->
+  <script src=" https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js "></script>
   
   <div id="app">
 
@@ -38,7 +45,8 @@
             </div>
             <div class="user-chat-details">
               <div class="user-name">{{ contact.name }}</div>
-              <div class="user-last-message">Ultimo messaggio</div>
+              <div class="user-last-message" v-if="contact.messages.length > 0"> {{ contact.messages[contact.messages.length - 1].message }} </div>
+              <div class="user-last-message" v-else> <i>Nessun messaggio</i> </div>
             </div>
 
           </li>
@@ -65,11 +73,20 @@
           <!-- elemento -> un array -> oggetto -> array  -->
           <!-- un singolo elemento dell'array messages dell'oggetto singolo di contacts -->
 
-          <div v-for="singleMessage in contacts[activeContactIndex].messages" class="message" :class="singleMessage.status">
+          <!-- singolo messaggio -->
+          <div v-for="(singleMessage, index) in contacts[activeContactIndex].messages" class="message" :class="singleMessage.status">
 
             {{singleMessage.message}}
             <div class="message-time">
               {{ singleMessage.date }}
+            </div>
+
+            <div class="dropdown-arrow" @click="toggleShowMenu(singleMessage)" >
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+
+            <div class="dropdown-menu" v-if="singleMessage.showMenu" @click="deleteMessage(index)">
+              cancella messaggio
             </div>
 
           </div>

@@ -172,6 +172,55 @@ body {
   color: #aaa
 }
 
+#chat-container #single-chat #messages-list .message:hover .dropdown-arrow {
+  display: block;
+}
+
+#chat-container #single-chat #messages-list .message .dropdown-arrow {
+  display: none;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  height: 100%;
+  width: 50px;
+
+  padding: 6px;
+  
+  text-align: right;
+  color: #555;
+
+  border-radius: 9px;
+
+  /* sfondo */
+  background-image: linear-gradient(to left, #d5f9ba, #d5f9ba, #d5f9ba00);
+}
+
+/* cambio la stilizzazione per i messaggi ricevuti */
+#chat-container #single-chat #messages-list .message.received .dropdown-arrow {
+  background-image: linear-gradient(to left, white, white, #ffffff00);
+
+}
+
+#chat-container #single-chat #messages-list .message .dropdown-menu {
+
+  position: absolute;
+  bottom: -28px;
+  right: -8px;
+
+  z-index: 1;
+
+  padding: 10px;
+
+  border-radius: 4px;
+
+  background-color: white;
+  box-shadow: 3px 3px 5px #00000030;
+
+  cursor: pointer;
+}
+
 
 #chat-container #single-chat #user-input input {
   width: 100%;
